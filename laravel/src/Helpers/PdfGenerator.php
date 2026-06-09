@@ -48,18 +48,36 @@ class PdfGenerator
         $lines[] = ["SUBTITLE", "Generated: " . date('Y-m-d H:i:s')];
         $lines[] = ["SEPARATOR", ""];
 
+        $addField = function(string $label, ?string $value) use (&$lines) {
+            $val = $value ?? 'N/A';
+            $fullText = $label . ": " . $val;
+            if (strlen($fullText) > 80) {
+                $wrapped = wordwrap($fullText, 80, "\n", true);
+                foreach (explode("\n", $wrapped) as $part) {
+                    $lines[] = ["FIELD", $part];
+                }
+            } else {
+                $lines[] = ["FIELD", $fullText];
+            }
+        };
+
+        $addFileField = function(string $label, string $url) use (&$lines) {
+            $lines[] = ["FIELD", $label];
+            $lines[] = ["FIELD", "  " . $url];
+        };
+
         $lines[] = ["SECTION", "ACCOUNT INFORMATION"];
-        $lines[] = ["FIELD", "Client ID: " . ($user->login_id ?? 'N/A')];
-        $lines[] = ["FIELD", "Full Name: " . ($user->name ?? 'N/A')];
-        $lines[] = ["FIELD", "Email Address: " . ($user->email ?? 'N/A')];
-        $lines[] = ["FIELD", "Status: " . ($user->status ?? 'N/A')];
-        $lines[] = ["FIELD", "Role: " . ($user->role ?? 'N/A')];
-        $lines[] = ["FIELD", "Created At: " . ($user->created_at ?? 'N/A')];
-        $lines[] = ["FIELD", "Wallet Address: " . ($user->wallet_address ?: ($application->wallet_address ?? 'N/A'))];
-        $lines[] = ["FIELD", "Network Protocol: " . ($user->network_type ?: ($application->network_type ?? 'N/A'))];
+        $addField("Client ID", $user->login_id);
+        $addField("Full Name", $user->name);
+        $addField("Email Address", $user->email);
+        $addField("Status", $user->status);
+        $addField("Role", $user->role);
+        $addField("Created At", $user->created_at);
+        $addField("Wallet Address", $user->wallet_address ?: ($application->wallet_address ?? 'N/A'));
+        $addField("Network Protocol", $user->network_type ?: ($application->network_type ?? 'N/A'));
         if ($application) {
-            $lines[] = ["FIELD", "Referral Source: " . ($application->referral_source ?? 'N/A')];
-            $lines[] = ["FIELD", "Referral Code: " . ($application->referral_code ?? 'N/A')];
+            $addField("Referral Source", $application->referral_source);
+            $addField("Referral Code", $application->referral_code);
         }
         $lines[] = ["SEPARATOR", ""];
 
@@ -67,93 +85,93 @@ class PdfGenerator
             $isCorporate = (($application->account_type ?? '') === 'corporate');
             
             $lines[] = ["SECTION", "APPLICATION DETAILS"];
-            $lines[] = ["FIELD", "Account Type: " . ucfirst($application->account_type ?? 'N/A')];
+            $addField("Account Type", ucfirst($application->account_type ?? 'N/A'));
             
             if (!$isCorporate) {
                 // Individual fields
-                $lines[] = ["FIELD", "Title/Occupation: " . ($application->title_occupation ?? 'N/A')];
-                $lines[] = ["FIELD", "First Name: " . ($application->first_name ?? 'N/A')];
-                $lines[] = ["FIELD", "Middle Name: " . ($application->middle_name ?? 'N/A')];
-                $lines[] = ["FIELD", "Last Name: " . ($application->last_name ?? 'N/A')];
-                $lines[] = ["FIELD", "Date of Birth: " . ($application->dob ?? 'N/A')];
-                $lines[] = ["FIELD", "Country: " . ($application->country ?? 'N/A')];
-                $lines[] = ["FIELD", "Phone Number: " . ($application->phone_number ?? 'N/A')];
-                $lines[] = ["FIELD", "Street Address: " . ($application->street_address ?? 'N/A')];
-                $lines[] = ["FIELD", "Unit/Apt: " . ($application->unit_apartment ?? 'N/A')];
-                $lines[] = ["FIELD", "City: " . ($application->city ?? 'N/A')];
-                $lines[] = ["FIELD", "State/Province: " . ($application->state_province ?? 'N/A')];
-                $lines[] = ["FIELD", "Postal/Zip: " . ($application->postal_zip ?? 'N/A')];
-                $lines[] = ["FIELD", "LinkedIn: " . ($application->linkedin ?? 'N/A')];
-                $lines[] = ["FIELD", "Instagram: " . ($application->instagram ?? 'N/A')];
-                $lines[] = ["FIELD", "Twitter: " . ($application->twitter ?? 'N/A')];
+                $addField("Title/Occupation", $application->title_occupation);
+                $addField("First Name", $application->first_name);
+                $addField("Middle Name", $application->middle_name);
+                $addField("Last Name", $application->last_name);
+                $addField("Date of Birth", $application->dob);
+                $addField("Country", $application->country);
+                $addField("Phone Number", $application->phone_number);
+                $addField("Street Address", $application->street_address);
+                $addField("Unit/Apt", $application->unit_apartment);
+                $addField("City", $application->city);
+                $addField("State/Province", $application->state_province);
+                $addField("Postal/Zip", $application->postal_zip);
+                $addField("LinkedIn", $application->linkedin);
+                $addField("Instagram", $application->instagram);
+                $addField("Twitter", $application->twitter);
             } else {
                 // Corporate fields
-                $lines[] = ["FIELD", "Entity Type: " . ($application->entity_type ?? 'N/A')];
-                $lines[] = ["FIELD", "Company Name: " . ($application->company_name ?? 'N/A')];
-                $lines[] = ["FIELD", "Registration Number: " . ($application->company_reg_number ?? 'N/A')];
-                $lines[] = ["FIELD", "LEI Identifier: " . ($application->lei_identifier ?? 'N/A')];
-                $lines[] = ["FIELD", "Incorporation Country: " . ($application->incorporation_country ?? 'N/A')];
-                $lines[] = ["FIELD", "Incorporation Date: " . ($application->incorporation_date ?? 'N/A')];
-                $lines[] = ["FIELD", "Nature of Business: " . ($application->nature_of_business ?? 'N/A')];
-                $lines[] = ["FIELD", "Is Regulated: " . ($application->company_regulated ?? 'N/A')];
-                $lines[] = ["FIELD", "Accredited Investor: " . ($application->accredited_investor ?? 'N/A')];
-                $lines[] = ["FIELD", "US Financial Entity: " . ($application->financial_entity_us ?? 'N/A')];
-                $lines[] = ["FIELD", "Swap Dealer: " . ($application->swap_dealer ?? 'N/A')];
-                $lines[] = ["FIELD", "Corporate Contact Phone: " . ($application->contact_number ?? 'N/A')];
-                $lines[] = ["FIELD", "Business Website: " . ($application->website ?? 'N/A')];
-                $lines[] = ["FIELD", "Operating Address Different: " . ($application->operating_address_different ?? 'N/A')];
-                $lines[] = ["FIELD", "Street Address: " . ($application->street_address_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "Country: " . ($application->country_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "City: " . ($application->city_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "State: " . ($application->state_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "Postal Code: " . ($application->postal_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "LinkedIn: " . ($application->linkedin_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "Instagram: " . ($application->instagram_entity ?? 'N/A')];
-                $lines[] = ["FIELD", "Twitter: " . ($application->twitter_entity ?? 'N/A')];
+                $addField("Entity Type", $application->entity_type);
+                $addField("Company Name", $application->company_name);
+                $addField("Registration Number", $application->company_reg_number);
+                $addField("LEI Identifier", $application->lei_identifier);
+                $addField("Incorporation Country", $application->incorporation_country);
+                $addField("Incorporation Date", $application->incorporation_date);
+                $addField("Nature of Business", $application->nature_of_business);
+                $addField("Is Regulated", $application->company_regulated);
+                $addField("Accredited Investor", $application->accredited_investor);
+                $addField("US Financial Entity", $application->financial_entity_us);
+                $addField("Swap Dealer", $application->swap_dealer);
+                $addField("Corporate Contact Phone", $application->contact_number);
+                $addField("Business Website", $application->website);
+                $addField("Operating Address Different", $application->operating_address_different);
+                $addField("Street Address", $application->street_address_entity);
+                $addField("Country", $application->country_entity);
+                $addField("City", $application->city_entity);
+                $addField("State", $application->state_entity);
+                $addField("Postal Code", $application->postal_entity);
+                $addField("LinkedIn", $application->linkedin_entity);
+                $addField("Instagram", $application->instagram_entity);
+                $addField("Twitter", $application->twitter_entity);
             }
             $lines[] = ["SEPARATOR", ""];
 
             $lines[] = ["SECTION", "FINANCIAL & TRADING PROFILE"];
-            $lines[] = ["FIELD", "Trading Purpose: " . ($application->trading_purpose ?? 'N/A')];
-            $lines[] = ["FIELD", "Trading Purpose Details: " . ($application->trading_purpose_desc ?? 'N/A')];
-            $lines[] = ["FIELD", "Flow of Funds: " . ($application->flow_of_funds ?? 'N/A')];
-            $lines[] = ["FIELD", "First Trade Date: " . ($application->first_trade_date ?? 'N/A')];
-            $lines[] = ["FIELD", "First Trade Size: " . ($application->first_trade_currency ?? '') . ' ' . ($application->first_trade_size ?? '')];
-            $lines[] = ["FIELD", "Est. Monthly Volume: " . ($application->monthly_volume_currency ?? '') . ' ' . ($application->monthly_volume_size ?? '')];
-            $lines[] = ["FIELD", "Source of Funding: " . ($isCorporate ? ($application->source_funding_entity ?? 'N/A') : ($application->source_funding ?? 'N/A'))];
-            $lines[] = ["FIELD", "Annual Income: " . ($application->annual_income_currency ?? '') . ' ' . ($application->annual_income_amount ?? '')];
-            $lines[] = ["FIELD", "Liquid Assets: " . ($application->liquid_assets_currency ?? '') . ' ' . ($application->liquid_assets_amount ?? '')];
+            $addField("Trading Purpose", $application->trading_purpose);
+            $addField("Trading Purpose Details", $application->trading_purpose_desc);
+            $addField("Flow of Funds", $application->flow_of_funds);
+            $addField("First Trade Date", $application->first_trade_date);
+            $addField("First Trade Size", ($application->first_trade_currency ?? '') . ' ' . ($application->first_trade_size ?? ''));
+            $addField("Est. Monthly Volume", ($application->monthly_volume_currency ?? '') . ' ' . ($application->monthly_volume_size ?? ''));
+            $addField("Source of Funding", $isCorporate ? ($application->source_funding_entity ?? 'N/A') : ($application->source_funding ?? 'N/A'));
+            $addField("Annual Income", ($application->annual_income_currency ?? '') . ' ' . ($application->annual_income_amount ?? ''));
+            $addField("Liquid Assets", ($application->liquid_assets_currency ?? '') . ' ' . ($application->liquid_assets_amount ?? ''));
             $lines[] = ["SEPARATOR", ""];
 
             $lines[] = ["SECTION", "COMPLIANCE & DECLARATIONS"];
             if (!$isCorporate) {
                 // Individual Compliance
-                $lines[] = ["FIELD", "Declared Bankruptcy: " . ($application->declared_bankruptcy ?? 'No') . ' (' . ($application->declared_bankruptcy_desc ?? '') . ')'];
-                $lines[] = ["FIELD", "PEP Status: " . ($application->pep_status ?? 'No') . ' (' . ($application->pep_status_desc ?? '') . ')'];
-                $lines[] = ["FIELD", "High Value Transactions: " . ($application->considerable_transactions ?? 'No')];
-                $lines[] = ["FIELD", "US Accreditations: " . ($application->portfolio_excess ?? 'No')];
-                $lines[] = ["FIELD", "Accredited Investor: " . ($application->accredited_investor ?? 'No')];
+                $addField("Declared Bankruptcy", ($application->declared_bankruptcy ?? 'No') . ' (' . ($application->declared_bankruptcy_desc ?? '') . ')');
+                $addField("PEP Status", ($application->pep_status ?? 'No') . ' (' . ($application->pep_status_desc ?? '') . ')');
+                $addField("High Value Transactions", $application->considerable_transactions);
+                $addField("US Accreditations", $application->portfolio_excess);
+                $addField("Accredited Investor", $application->accredited_investor);
             } else {
                 // Corporate Compliance
-                $lines[] = ["FIELD", "Declared Bankruptcy: " . ($application->declared_bankruptcy_entity ?? 'No') . ' (' . ($application->declared_bankruptcy_entity_desc ?? '') . ')'];
-                $lines[] = ["FIELD", "PEP Status: " . ($application->pep_status_entity ?? 'No') . ' (' . ($application->pep_status_entity_desc ?? '') . ')'];
-                $lines[] = ["FIELD", "US Financial Entity: " . ($application->financial_entity_us ?? 'No')];
-                $lines[] = ["FIELD", "Swap Dealer: " . ($application->swap_dealer ?? 'No')];
+                $addField("Declared Bankruptcy", ($application->declared_bankruptcy_entity ?? 'No') . ' (' . ($application->declared_bankruptcy_entity_desc ?? '') . ')');
+                $addField("PEP Status", ($application->pep_status_entity ?? 'No') . ' (' . ($application->pep_status_entity_desc ?? '') . ')');
+                $addField("US Financial Entity", $application->financial_entity_us);
+                $addField("Swap Dealer", $application->swap_dealer);
             }
-            $lines[] = ["FIELD", "Declaration Signed: " . ($application->declaration_signed ? 'Yes' : 'No')];
+            $addField("Declaration Signed", $application->declaration_signed ? 'Yes' : 'No');
             $lines[] = ["SEPARATOR", ""];
 
             $lines[] = ["SECTION", "BANKING DETAILS"];
-            $lines[] = ["FIELD", "Beneficiary Bank: " . ($application->bank_name ?? 'N/A')];
-            $lines[] = ["FIELD", "Bank Address: " . ($application->bank_address ?? 'N/A')];
-            $lines[] = ["FIELD", "Bank Country: " . ($application->bank_country ?? 'N/A')];
-            $lines[] = ["FIELD", "Account Holder: " . ($application->bank_account_holder ?? 'N/A')];
-            $lines[] = ["FIELD", "Account Number: " . ($application->bank_account_number ?? 'N/A')];
-            $lines[] = ["FIELD", "Routing Code: " . ($application->bank_routing_code ?? 'N/A')];
-            $lines[] = ["FIELD", "SWIFT/BIC Code: " . ($application->bank_swift ?? 'N/A')];
-            $lines[] = ["FIELD", "Account Currency: " . ($application->bank_currency ?? 'USD')];
-            $lines[] = ["FIELD", "Beneficiary Address: " . ($application->bank_beneficiary_address ?? 'N/A')];
-            $lines[] = ["FIELD", "Intermediary Bank: " . ($application->bank_intermediary ?? 'N/A')];
+            $addField("Beneficiary Bank", $application->bank_name);
+            $addField("Bank Address", $application->bank_address);
+            $addField("Bank Country", $application->bank_country);
+            $addField("Account Holder", $application->bank_account_holder);
+            $addField("Account Number", $application->bank_account_number);
+            $addField("Routing Code", $application->bank_routing_code);
+            $addField("SWIFT/BIC Code", $application->bank_swift);
+            $addField("Account Currency", $application->bank_currency);
+            $addField("Beneficiary Address", $application->bank_beneficiary_address);
+            $addField("Intermediary Bank", $application->bank_intermediary);
             $lines[] = ["SEPARATOR", ""];
 
             $lines[] = ["SECTION", "UPLOADED DOCUMENTS"];
@@ -165,7 +183,7 @@ class PdfGenerator
                 } else {
                     foreach ($kycFiles as $idx => $f) {
                         $fileUrl = $protocol . $host . url('/uploads/' . rawurlencode($f));
-                        $lines[] = ["FIELD", "KYC Document [" . ($idx + 1) . "]: " . $fileUrl];
+                        $addFileField("KYC Document [" . ($idx + 1) . "]:", $fileUrl);
                     }
                 }
 
@@ -176,7 +194,7 @@ class PdfGenerator
                 } else {
                     foreach ($fundsFiles as $idx => $f) {
                         $fileUrl = $protocol . $host . url('/uploads/' . rawurlencode($f));
-                        $lines[] = ["FIELD", "Proof of Funds [" . ($idx + 1) . "]: " . $fileUrl];
+                        $addFileField("Proof of Funds [" . ($idx + 1) . "]:", $fileUrl);
                     }
                 }
             } else {
@@ -195,7 +213,7 @@ class PdfGenerator
                     } else {
                         foreach ($files as $idx => $f) {
                             $fileUrl = $protocol . $host . url('/uploads/' . rawurlencode($f));
-                            $lines[] = ["FIELD", $docLabel . " [" . ($idx + 1) . "]: " . $fileUrl];
+                            $addFileField($docLabel . " [" . ($idx + 1) . "]:", $fileUrl);
                         }
                     }
                 }
