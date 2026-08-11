@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18380805225"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'AW-18380805225');
+        </script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Wires4 — Get Higher Crypto Limits</title>
@@ -123,7 +132,7 @@
                     </div>
                     <div class="stat-item">
                         <div class="stat-label">Processed Trade Orders</div>
-                        <div class="stat-value">$8,532,215</div>
+                        <div class="stat-value">8,532,215</div>
                     </div>
                 </div>
             </div>
