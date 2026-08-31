@@ -24,8 +24,9 @@ abstract class Controller
 
         $content = ob_get_clean();
 
-        // Check if view is welcome (standalone) or needs layout
-        if ($view === 'welcome') {
+        // Full landing pages render without the auth layout
+        $standaloneViews = ['welcome', 'otc_usdt', 'retail_vs_otc'];
+        if (in_array($view, $standaloneViews, true)) {
             echo $content;
         } else {
             $layoutFile = __DIR__ . '/../Views/layouts/auth.php';

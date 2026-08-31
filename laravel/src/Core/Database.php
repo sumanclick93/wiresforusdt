@@ -93,6 +93,39 @@ class Database
                 ");
             }
 
+            // Create expo_inquiries table if missing
+            if ($driver === 'sqlite') {
+                $pdo->exec("
+                    CREATE TABLE IF NOT EXISTS expo_inquiries (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name VARCHAR(255) NOT NULL,
+                        email VARCHAR(255) NOT NULL,
+                        phone_number VARCHAR(100) NULL,
+                        company VARCHAR(255) NULL,
+                        expected_volume VARCHAR(100) NULL,
+                        message TEXT NULL,
+                        status VARCHAR(50) DEFAULT 'pending',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
+                ");
+            } else {
+                $pdo->exec("
+                    CREATE TABLE IF NOT EXISTS expo_inquiries (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        name VARCHAR(255) NOT NULL,
+                        email VARCHAR(255) NOT NULL,
+                        phone_number VARCHAR(100) NULL,
+                        company VARCHAR(255) NULL,
+                        expected_volume VARCHAR(100) NULL,
+                        message TEXT NULL,
+                        status VARCHAR(50) DEFAULT 'pending',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                ");
+            }
+
             // Seed initial defaults if table is empty or update missing options
             $count = (int)$pdo->query("SELECT COUNT(*) FROM dropdown_options")->fetchColumn();
             $defaults = [

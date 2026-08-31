@@ -107,6 +107,200 @@ class AuthController extends Controller
     }
 
     /**
+     * Public OTC for Casino Route.
+     */
+    public function otcForCasino(): void
+    {
+        $this->render('otc_for_casino', [], 'OTC Liquidity Solutions for Casinos & Gaming');
+    }
+
+    /**
+     * Public Dubai Expo 2026 Route.
+     */
+    public function dubaiExpo(): void
+    {
+        $this->render('dubai_expo_2026', [], 'Dubai Expo 2026 — Wires4 Executive Lounge & OTC Desk');
+    }
+
+    /**
+     * Submit Dubai Expo 2026 Inquiry.
+     */
+    public function submitExpoInquiry(): void
+    {
+        $name = trim($_POST['name'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $phoneNumber = trim($_POST['phone_number'] ?? '');
+        $company = trim($_POST['company'] ?? '');
+        $expectedVolume = trim($_POST['expected_volume'] ?? '');
+        $message = trim($_POST['message'] ?? '');
+
+        if ($name === '' || $email === '' || $phoneNumber === '' || $company === '') {
+            Session::flash('error', 'Please complete all required fields (Name, Email, Phone, Company).');
+            $this->redirect('/dubai-expo-2026');
+            return;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            Session::flash('error', 'Please enter a valid email address.');
+            $this->redirect('/dubai-expo-2026');
+            return;
+        }
+
+        try {
+            $pdo = Database::getConnection();
+            $stmt = $pdo->prepare("
+                INSERT INTO expo_inquiries (name, email, phone_number, company, expected_volume, message, status, created_at)
+                VALUES (:name, :email, :phone_number, :company, :expected_volume, :message, 'pending', CURRENT_TIMESTAMP)
+            ");
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':phone_number' => $phoneNumber,
+                ':company' => $company,
+                ':expected_volume' => $expectedVolume,
+                ':message' => $message
+            ]);
+
+            // Dispatch notification
+            $support = Config::get('MAIL_FROM_ADDRESS', 'support@wiresforusdt.com');
+            $subject = "New Dubai Expo 2026 VIP Inquiry — {$name} ({$company})";
+            $body = "
+                <div style='font-family: Arial, sans-serif; color: #222; line-height: 1.6;'>
+                    <h2>New Dubai Expo 2026 Inquiry</h2>
+                    <p>A new VIP attendee inquiry has been submitted for Dubai Expo 2026.</p>
+                    <table cellpadding='8' cellspacing='0' style='border-collapse: collapse;'>
+                        <tr><td><strong>Name</strong></td><td>" . htmlspecialchars($name) . "</td></tr>
+                        <tr><td><strong>Email</strong></td><td>" . htmlspecialchars($email) . "</td></tr>
+                        <tr><td><strong>Phone / WhatsApp</strong></td><td>" . htmlspecialchars($phoneNumber) . "</td></tr>
+                        <tr><td><strong>Company</strong></td><td>" . htmlspecialchars($company) . "</td></tr>
+                        <tr><td><strong>Expected Volume</strong></td><td>" . htmlspecialchars($expectedVolume) . "</td></tr>
+                        <tr><td><strong>Message</strong></td><td>" . nl2br(htmlspecialchars($message)) . "</td></tr>
+                    </table>
+                </div>
+            ";
+
+            $this->simulateEmail($support, $subject, $body);
+
+            Session::flash('success', 'Thank you for registering your inquiry for Dubai Expo 2026! Our executive team will reach out to schedule your private session.');
+        } catch (\Exception $e) {
+            Session::flash('error', 'An error occurred while processing your submission. Please try again or contact support directly.');
+        }
+
+        $this->redirect('/dubai-expo-2026');
+    }
+
+    /**
+     * Public OTC USDT purchase page.
+     */
+    public function otcUsdt(): void
+    {
+        $this->render('otc_usdt', [], 'OTC USDT for Qualified Customers Using Bank Wires');
+    }
+
+    /**
+     * Public Retail Exchange vs OTC Desk page.
+     */
+    public function retailVsOtc(): void
+    {
+        $this->render('retail_vs_otc', [], 'Retail Exchange vs. OTC Desk');
+    }
+
+    /**
+     * Redirect path after an OTC inquiry, based on the source page.
+     */
+    protected function otcInquiryPath(): string
+    {
+        $source = $_POST['inquiry_source'] ?? 'otc-usdt';
+        return $source === 'retail-vs-otc'
+            ? '/retail-exchange-vs-otc-desk#otc-inquiry'
+            : '/otc-usdt#otc-inquiry';
+    }
+
+    /**
+     * OTC USDT inquiry form submission.
+     */
+    public function submitOtcInquiry(): void
+    {
+        $allowedAmounts = [
+            '$5K-$25K', '$25K-$50K', '$50K-$100K', '$100K-$250K', '$250K-$1M', '$1M+',
+            '$5K-$10K', '$10K-$25K',
+        ];
+        $allowedTypes = ['Individual', 'Business'];
+        $redirect = $this->otcInquiryPath();
+
+        $amount = trim($_POST['transaction_amount'] ?? '');
+        $customerType = trim($_POST['customer_type'] ?? '');
+        $contact = trim($_POST['contact'] ?? '');
+        $state = trim($_POST['state'] ?? '');
+
+        Session::flashInput([
+            'transaction_amount' => $amount,
+            'customer_type' => $customerType,
+            'contact' => $contact,
+            'state' => $state,
+        ]);
+
+        if (!in_array($amount, $allowedAmounts, true)) {
+            Session::flash('error', 'Please select a transaction amount.');
+            $this->redirect($redirect);
+            return;
+        }
+
+        if (!in_array($customerType, $allowedTypes, true)) {
+            Session::flash('error', 'Please select Individual or Business.');
+            $this->redirect($redirect);
+            return;
+        }
+
+        if ($contact === '' || strlen($contact) < 5) {
+            Session::flash('error', 'Please enter a valid email or phone number.');
+            $this->redirect($redirect);
+            return;
+        }
+
+        if (str_contains($contact, '@') && !filter_var($contact, FILTER_VALIDATE_EMAIL)) {
+            Session::flash('error', 'Please enter a valid email address.');
+            $this->redirect($redirect);
+            return;
+        }
+
+        if ($state === '' || strlen($state) > 120) {
+            Session::flash('error', 'Please enter your state.');
+            $this->redirect($redirect);
+            return;
+        }
+
+        $safeAmount = htmlspecialchars($amount, ENT_QUOTES, 'UTF-8');
+        $safeType = htmlspecialchars($customerType, ENT_QUOTES, 'UTF-8');
+        $safeContact = htmlspecialchars($contact, ENT_QUOTES, 'UTF-8');
+        $safeState = htmlspecialchars($state, ENT_QUOTES, 'UTF-8');
+        $sourceLabel = ($_POST['inquiry_source'] ?? '') === 'retail-vs-otc'
+            ? 'Retail Exchange vs. OTC Desk page'
+            : 'OTC USDT page';
+
+        $support = \App\Core\Config::get('MAIL_FROM_ADDRESS', 'support@wiresforusdt.com');
+        $subject = "OTC USDT Inquiry — {$amount} ({$customerType})";
+        $body = "
+            <div style='font-family: Arial, sans-serif; color: #222; line-height: 1.6;'>
+                <h2>New OTC USDT Inquiry</h2>
+                <p>A qualified-customer inquiry was submitted from the {$sourceLabel}.</p>
+                <table cellpadding='8' cellspacing='0' style='border-collapse: collapse;'>
+                    <tr><td><strong>Transaction Amount</strong></td><td>{$safeAmount}</td></tr>
+                    <tr><td><strong>Individual / Business</strong></td><td>{$safeType}</td></tr>
+                    <tr><td><strong>Email / Phone</strong></td><td>{$safeContact}</td></tr>
+                    <tr><td><strong>State</strong></td><td>{$safeState}</td></tr>
+                </table>
+            </div>
+        ";
+
+        $this->simulateEmail($support, $subject, $body);
+        \App\Helpers\MailHelper::send($support, $subject, $body);
+
+        Session::flash('success', 'Your inquiry has been received. A representative will contact you after a preliminary review. There is no obligation, and transactions remain subject to verification and approval.');
+        $this->redirect($redirect);
+    }
+
+    /**
      * Request Access (Email Submission).
      */
     public function requestAccess(): void

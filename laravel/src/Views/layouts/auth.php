@@ -287,6 +287,10 @@
                     <a href="<?= url('/') ?>">Home</a>
                     <a href="<?= url('/about') ?>">About Us</a>
                     <a href="<?= url('/how_it_work') ?>">How It Works</a>
+                    <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
+                    <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
+                    <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
+                    <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                     <?php /* <a href="<?= url('/proof_of_funds') ?>">Tests for sale</a> */ ?>
                     <a href="<?= url('/contact') ?>">Contact Us</a>
                 </nav>
@@ -310,6 +314,9 @@
                                 <?php if ($currUser->role === 'admin'): ?>
                                     <a href="<?= url('/admin/dashboard') ?>" class="dropdown-item">
                                         <i class="fa-solid fa-chart-line"></i> Admin Panel
+                                    </a>
+                                    <a href="<?= url('/admin/expo-inquiries') ?>" class="dropdown-item">
+                                        <i class="fa-solid fa-calendar-check"></i> Enquiry for Expo
                                     </a>
                                 <?php else: ?>
                                     <a href="<?= url('/dashboard') ?>" class="dropdown-item">
@@ -339,8 +346,40 @@
                         <a class="btn btn-primary" style="padding: 10px 22px; font-size: 13px; border-radius: 30px; color:#060b0d;" href="<?= url('/#request-access') ?>">Request Access</a>
                     <?php endif; ?>
                 </div>
+                <!-- Hamburger Button -->
+                <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </header>
+
+        <!-- Mobile Drawer Overlay & Menu -->
+        <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileMenu()"></div>
+        <div class="mobile-drawer" id="mobileDrawer">
+            <div class="mobile-drawer-nav">
+                <a href="<?= url('/') ?>">Home</a>
+                <a href="<?= url('/about') ?>">About Us</a>
+                <a href="<?= url('/how_it_work') ?>">How It Works</a>
+                <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
+                <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
+                <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
+                <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
+                <a href="<?= url('/contact') ?>">Contact Us</a>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                    <?php if (\App\Core\Session::check()): ?>
+                        <?php $currUser = \App\Core\Session::user(); ?>
+                        <?php if ($currUser->role === 'admin'): ?>
+                            <a class="btn btn-primary" style="width: 100%; color:#060b0d;" href="<?= url('/admin/dashboard') ?>">Admin Panel</a>
+                        <?php else: ?>
+                            <a class="btn btn-primary" style="width: 100%; color:#060b0d;" href="<?= url('/dashboard') ?>">Dashboard</a>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <a class="btn btn-ghost" style="width: 100%;" href="<?= url('/login') ?>">Log in</a>
+                        <a class="btn btn-primary" style="width: 100%; color:#060b0d;" href="<?= url('/#request-access') ?>">Request Access</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
 
         <!-- Main Wrapper -->
         <main class="auth-wrapper">
@@ -352,6 +391,16 @@
             <div class="container">
                 <img src="<?= url('/images/logo.png') ?>" alt="Wires4" style="height: 28px; margin-bottom: 20px; opacity: 0.7;" />
                 <p style="max-width: 650px; margin: 0 auto 20px; line-height: 1.6;">Designed to meet the complex trading needs of institutions. Wires4 Digital provides highly regulated, MPC-secured digital custody and high-limit liquidity settlement infrastructures.</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px;">
+                    <a href="<?= url('/') ?>">Home</a>
+                    <a href="<?= url('/about') ?>">About Us</a>
+                    <a href="<?= url('/how_it_work') ?>">How It Works</a>
+                    <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
+                    <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
+                    <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
+                    <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
+                    <a href="<?= url('/contact') ?>">Contact Us</a>
+                </div>
                 <div style="font-size: 12px; line-height: 1.8; margin-bottom: 24px; color: rgba(255, 255, 255, 0.4); text-align: center; max-width: 800px; margin: 0 auto 24px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">
                     <strong>Powered by BURTEREX S.R.O.</strong><br>
                     MSB Registration Number: 31000274751182 | Trade License Number: 19560851 (Czech Republic Registration)<br>
@@ -363,6 +412,27 @@
         </footer>
 
         <script>
+            function toggleMobileMenu() {
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('mobileDrawerOverlay');
+                const toggleIcon = document.querySelector('.menu-toggle i');
+                
+                if (drawer && overlay) {
+                    drawer.classList.toggle('open');
+                    overlay.classList.toggle('open');
+                    
+                    if (toggleIcon) {
+                        if (drawer.classList.contains('open')) {
+                            toggleIcon.classList.remove('fa-bars');
+                            toggleIcon.classList.add('fa-xmark');
+                        } else {
+                            toggleIcon.classList.remove('fa-xmark');
+                            toggleIcon.classList.add('fa-bars');
+                        }
+                    }
+                }
+            }
+
             document.addEventListener('DOMContentLoaded', () => {
                 const trigger = document.getElementById('userDropdownTrigger');
                 const container = document.getElementById('userDropdownContainer');

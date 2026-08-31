@@ -27,6 +27,10 @@
                     <a href="<?= url('/') ?>">Home</a>
                     <a href="<?= url('/about') ?>">About Us</a>
                     <a href="<?= url('/how_it_work') ?>">How It Works</a>
+                    <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
+                    <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
+                    <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
+                    <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                     <?php /* <a href="<?= url('/proof_of_funds') ?>">Tests for sale</a> */ ?>
                     <a href="<?= url('/contact') ?>">Contact Us</a>
                 </nav>
@@ -50,6 +54,9 @@
                                 <?php if ($currUser->role === 'admin'): ?>
                                     <a href="<?= url('/admin/dashboard') ?>" class="dropdown-item">
                                         <i class="fa-solid fa-chart-line"></i> Admin Panel
+                                    </a>
+                                    <a href="<?= url('/admin/expo-inquiries') ?>" class="dropdown-item">
+                                        <i class="fa-solid fa-calendar-check"></i> Enquiry for Expo
                                     </a>
                                 <?php else: ?>
                                     <a href="<?= url('/dashboard') ?>" class="dropdown-item">
@@ -87,6 +94,10 @@
                 <a href="<?= url('/') ?>" class="active">Home</a>
                 <a href="<?= url('/about') ?>">About Us</a>
                 <a href="<?= url('/how_it_work') ?>">How It Works</a>
+                <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
+                <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
+                <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
+                <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                 <?php /* <a href="<?= url('/proof_of_funds') ?>">Tests for sale</a> */ ?>
                 <a href="<?= url('/contact') ?>">Contact Us</a>
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
@@ -499,11 +510,11 @@
                     </div>
                     <div class="footer-contact-side">
                         <h4>Contact Us</h4>
-                        <p><i class="fa-solid fa-phone" style="margin-right: 8px; color: var(--accent-neon);"></i> (524) 555 0000</p>
+                        <p><i class="fa-solid fa-phone" style="margin-right: 8px; color: var(--accent-neon);"></i> +1 (929) 727 5156</p>
                         <p><i class="fa-solid fa-envelope" style="margin-right: 8px; color: var(--accent-neon);"></i> Wires4usdt@gmail.com</p>
                         <div class="social-links">
-                            <a class="social-icon" href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                            <a class="social-icon" href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a class="social-icon" href="https://t.me/wiresforusdt" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                            <a class="social-icon" href="https://wa.me/19297275156" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                             <a class="social-icon" href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                             <a class="social-icon" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
@@ -514,6 +525,10 @@
                         <a href="<?= url('/') ?>">Home</a>
                         <a href="<?= url('/about') ?>">About Us</a>
                         <a href="<?= url('/how_it_work') ?>">How It Works</a>
+                        <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
+                        <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
+                        <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
+                        <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                         <?php /* <a href="<?= url('/proof_of_funds') ?>">Tests for sale</a> */ ?>
                         <a href="<?= url('/contact') ?>">Contact Us</a>
                     </div>

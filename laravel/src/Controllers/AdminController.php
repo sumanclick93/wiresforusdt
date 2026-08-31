@@ -226,7 +226,7 @@ class AdminController extends Controller
                 <p>Dear {$user->name},</p>
                 <p>Your USDT purchase request for reference number <strong>{$request->deposit_reference_number}</strong> (amounting to " . number_format($request->usdt_amount, 2) . " USDT) was unfortunately rejected by our compliance department.</p>
                 <p>Please ensure that all wire transfer details exactly match your registered bank specifications, and that a clear, valid proof of deposit image/PDF is provided.</p>
-                <p>If you believe this was an error, please contact Wires4 institutional support at support@wiresforusdt.com or via Telegram.</p>
+                <p>If you believe this was an error, please contact Wires4 institutional support at support@wiresforusdt.com or via Telegram (@wiresforusdt) / WhatsApp (+1 (929) 727 5156).</p>
             ";
             $this->simulateEmail($user->email, $subject, $body);
         }
@@ -920,5 +920,69 @@ class AdminController extends Controller
             Session::flash('error', "Failed to update bank wire details.");
         }
         $this->back();
+    }
+
+    /**
+     * Display Expo Inquiries admin board.
+     */
+    public function expoInquiries(): void
+    {
+        $currentUser = Session::user();
+        if (!$currentUser || $currentUser->role !== 'admin') {
+            http_response_code(403);
+            die("Unauthorized access.");
+        }
+
+        $db = \App\Core\Database::getConnection();
+        $stmt = $db->query("SELECT * FROM expo_inquiries ORDER BY created_at DESC");
+        $inquiries = $stmt->fetchAll();
+
+        $this->render('admin/expo_inquiries', [
+            'inquiries' => $inquiries
+        ], 'Enquiry for Expo — Dubai 2026');
+    }
+
+    /**
+     * Update status of an Expo Inquiry.
+     */
+    public function updateExpoInquiryStatus(string $id): void
+    {
+        $currentUser = Session::user();
+        if (!$currentUser || $currentUser->role !== 'admin') {
+            http_response_code(403);
+            die("Unauthorized access.");
+        }
+
+        $status = trim($_POST['status'] ?? 'pending');
+        $validStatuses = ['pending', 'contacted', 'closed'];
+        if (!in_array($status, $validStatuses)) {
+            $status = 'pending';
+        }
+
+        $db = \App\Core\Database::getConnection();
+        $stmt = $db->prepare("UPDATE expo_inquiries SET status = :status, updated_at = CURRENT_TIMESTAMP WHERE id = :id");
+        $stmt->execute([':status' => $status, ':id' => (int)$id]);
+
+        Session::flash('success', "Expo Inquiry #{$id} status updated to '" . ucfirst($status) . "'.");
+        $this->redirect('/admin/expo-inquiries');
+    }
+
+    /**
+     * Delete an Expo Inquiry.
+     */
+    public function deleteExpoInquiry(string $id): void
+    {
+        $currentUser = Session::user();
+        if (!$currentUser || $currentUser->role !== 'admin') {
+            http_response_code(403);
+            die("Unauthorized access.");
+        }
+
+        $db = \App\Core\Database::getConnection();
+        $stmt = $db->prepare("DELETE FROM expo_inquiries WHERE id = :id");
+        $stmt->execute([':id' => (int)$id]);
+
+        Session::flash('success', "Expo Inquiry #{$id} has been deleted.");
+        $this->redirect('/admin/expo-inquiries');
     }
 }

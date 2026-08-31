@@ -8,6 +8,17 @@ $router = new Router();
 $router->get('/', 'AuthController@welcome');
 $router->get('/about', 'AuthController@about');
 $router->get('/how_it_work', 'AuthController@howItWork');
+$router->get('/otc-for-casino', 'AuthController@otcForCasino');
+$router->get('/otc_for_casino', 'AuthController@otcForCasino');
+$router->get('/dubai-expo-2026', 'AuthController@dubaiExpo');
+$router->get('/dubai_expo_2026', 'AuthController@dubaiExpo');
+$router->post('/dubai-expo-2026', 'AuthController@submitExpoInquiry');
+$router->get('/otc-usdt', 'AuthController@otcUsdt');
+$router->get('/otc_usdt', 'AuthController@otcUsdt');
+$router->post('/otc-usdt', 'AuthController@submitOtcInquiry');
+$router->get('/retail-exchange-vs-otc-desk', 'AuthController@retailVsOtc');
+$router->get('/retail-vs-otc', 'AuthController@retailVsOtc');
+$router->post('/retail-exchange-vs-otc-desk', 'AuthController@submitOtcInquiry');
 // $router->get('/proof_of_funds', 'AuthController@proofOfFunds');
 $router->get('/contact', 'AuthController@contact');
 
@@ -76,5 +87,10 @@ $router->post('/admin/user/{id}/reject-updates', 'AdminController@rejectProfileU
 $router->post('/admin/user/{id}/sdm-selfie', 'AdminController@submitSdmSelfie', ['auth', 'gated2fa']);
 $router->post('/admin/user/{id}/request-docs', 'AdminController@requestDocuments', ['auth', 'gated2fa']);
 $router->post('/admin/user/{id}/buy-bank', 'AdminController@updateBuyBankDetails', ['auth', 'gated2fa']);
+
+// Expo Inquiries Admin Routes
+$router->get('/admin/expo-inquiries', 'AdminController@expoInquiries', ['auth', 'gated2fa']);
+$router->post('/admin/expo-inquiries/update-status/{id}', 'AdminController@updateExpoInquiryStatus', ['auth', 'gated2fa']);
+$router->post('/admin/expo-inquiries/delete/{id}', 'AdminController@deleteExpoInquiry', ['auth', 'gated2fa']);
 
 return $router;

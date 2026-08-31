@@ -169,18 +169,21 @@ body {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .main-nav a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 500;
+  white-space: nowrap;
   transition: all 0.25s ease;
 }
 
-.main-nav a:hover {
+.main-nav a:hover,
+.main-nav a.active {
   color: var(--text-primary);
 }
 
@@ -953,15 +956,18 @@ body {
 }
 
 /* Top-tier Custom Media Queries for Responsiveness */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .main-nav, 
   .header-cta {
-    display: none;
+    display: none !important;
   }
 
   .menu-toggle {
-    display: block;
+    display: block !important;
   }
+}
+
+@media (max-width: 900px) {
 
   /* Hero Section */
   .hero {
@@ -1599,5 +1605,432 @@ body {
 
 .dropdown-item.logout-btn:hover i {
     color: #ff5252;
+}
+
+.main-nav a.active {
+  color: var(--text-primary);
+}
+
+/* OTC USDT landing page */
+.otc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 28px;
+}
+
+.otc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(185, 255, 58, 0.08);
+  border: 1px solid rgba(185, 255, 58, 0.22);
+  color: var(--accent-neon);
+  border-radius: 50px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.otc-section {
+  padding: 80px 0;
+}
+
+.otc-section.alt {
+  background: rgba(6, 11, 13, 0.4);
+}
+
+.otc-kicker {
+  color: var(--accent-neon);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.otc-section h2 {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+
+.otc-section .lead {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+.otc-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.otc-step {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 220px;
+}
+
+.otc-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-neon);
+  color: #060b0d;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.otc-step h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.otc-step p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.otc-use-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.otc-use-card,
+.otc-why-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.otc-use-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.otc-use-card i {
+  color: var(--accent-neon);
+}
+
+.otc-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.otc-why-card h3 {
+  font-size: 17px;
+  margin: 12px 0 8px;
+}
+
+.otc-why-card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.otc-why-card i {
+  color: var(--accent-neon);
+  font-size: 20px;
+}
+
+.otc-amount-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.otc-amount-card {
+  background: var(--panel-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.otc-amount-card:hover,
+.otc-amount-card.active {
+  border-color: var(--accent-neon);
+  box-shadow: 0 0 24px rgba(185, 255, 58, 0.15);
+  color: var(--accent-neon);
+  transform: translateY(-2px);
+}
+
+.otc-note {
+  margin-top: 24px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 800px;
+}
+
+.otc-form-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 820px;
+  margin: 0 auto;
+  backdrop-filter: blur(20px);
+}
+
+.otc-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.otc-form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.otc-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.otc-input,
+.otc-select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 15px;
+}
+
+.otc-input:focus,
+.otc-select:focus {
+  outline: none;
+  border-color: var(--accent-neon);
+}
+
+.otc-select option {
+  background: #0d161a;
+  color: #fff;
+}
+
+.otc-type-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.otc-type-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.otc-type-btn.active {
+  border-color: var(--accent-neon);
+  color: var(--accent-neon);
+  background: rgba(185, 255, 58, 0.08);
+}
+
+.otc-legal {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.otc-legal a {
+  color: var(--accent-neon);
+  text-decoration: none;
+}
+
+.otc-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 20px;
+}
+
+.otc-steps.cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.otc-steps.cols-5 .otc-step {
+  min-height: 240px;
+}
+
+.otc-compare {
+  margin-top: 32px;
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--panel-bg);
+}
+
+.otc-compare-head,
+.otc-compare-row {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr 1fr;
+}
+
+.otc-compare-head {
+  background: rgba(185, 255, 58, 0.08);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.otc-compare-head div,
+.otc-compare-row div {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.otc-compare-head div:last-child,
+.otc-compare-row div:last-child {
+  border-right: none;
+  color: var(--accent-neon);
+}
+
+.otc-compare-row:last-child div {
+  border-bottom: none;
+}
+
+.otc-compare-row .otc-compare-label {
+  font-weight: 700;
+  color: #fff;
+}
+
+.otc-compare-row div:nth-child(2) {
+  color: var(--text-muted);
+}
+
+.otc-amount-card .otc-amount-action {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.otc-amount-card.active .otc-amount-action,
+.otc-amount-card:hover .otc-amount-action {
+  color: var(--accent-neon);
+}
+
+.otc-dual-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.otc-dual-cta .or-text {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.otc-inline-cta {
+  color: var(--accent-neon);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 1100px) {
+  .otc-steps.cols-5 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .otc-steps,
+  .otc-steps.cols-5,
+  .otc-use-grid,
+  .otc-why-grid,
+  .otc-amount-grid,
+  .otc-form-grid,
+  .otc-compare-head,
+  .otc-compare-row {
+    grid-template-columns: 1fr;
+  }
+
+  .otc-compare-head {
+    display: none;
+  }
+
+  .otc-compare-row div {
+    border-right: none;
+  }
+
+  .otc-compare-row div:nth-child(2)::before,
+  .otc-compare-row div:nth-child(3)::before {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--accent-neon);
+  }
+
+  .otc-compare-row div:nth-child(2)::before {
+    content: "Retail Exchange";
+  }
+
+  .otc-compare-row div:nth-child(3)::before {
+    content: "WiresforUSDT OTC";
+  }
+
+  .otc-section h2 {
+    font-size: 30px;
+  }
+
+  .otc-form-card {
+    padding: 32px 22px;
+  }
+
+  .otc-amount-card {
+    font-size: 20px;
+  }
 }
 

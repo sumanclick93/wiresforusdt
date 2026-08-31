@@ -5,9 +5,12 @@
             <span style="color: var(--accent-neon); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 4px;">SECURED ADMINISTRATIVE ROOT CONFIGURATION</span>
             <h1 style="font-size: 28px; font-weight: 800; margin: 0; color: #fff;">Dropdown Specification Desk</h1>
         </div>
-        <div style="display: flex; gap: 10px; align-items: center;">
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
             <a href="<?= url('/admin/dashboard') ?>" class="btn btn-ghost" style="padding: 8px 16px; font-size: 12px; border-radius: 30px; display: flex; align-items: center; gap: 6px; text-decoration: none;">
                 <i class="fa-solid fa-arrow-left"></i> Admin Panel
+            </a>
+            <a href="<?= url('/admin/expo-inquiries') ?>" class="btn btn-ghost" style="padding: 8px 16px; font-size: 12px; border-radius: 30px; display: flex; align-items: center; gap: 6px; text-decoration: none;">
+                <i class="fa-solid fa-calendar-check"></i> Enquiry for Expo
             </a>
             <div style="background: rgba(185, 255, 58, 0.08); border: 1px solid rgba(185, 255, 58, 0.2); padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; color: var(--accent-neon); display: flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-gears" style="font-size: 10px;"></i>

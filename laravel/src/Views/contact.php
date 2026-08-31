@@ -24,19 +24,19 @@
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 10px;">
-                <a href="https://wa.me/13475289691" target="_blank" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; background: rgba(38, 161, 123, 0.1); border: 1px solid rgba(38, 161, 123, 0.25); border-radius: 10px; padding: 14px 18px; transition: all 0.3s;" onmouseover="this.style.background='rgba(38, 161, 123, 0.2)'" onmouseout="this.style.background='rgba(38, 161, 123, 0.1)'">
+                <a href="https://wa.me/19297275156" target="_blank" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; background: rgba(38, 161, 123, 0.1); border: 1px solid rgba(38, 161, 123, 0.25); border-radius: 10px; padding: 14px 18px; transition: all 0.3s;" onmouseover="this.style.background='rgba(38, 161, 123, 0.2)'" onmouseout="this.style.background='rgba(38, 161, 123, 0.1)'">
                     <i class="fa-brands fa-whatsapp" style="font-size: 24px; color: #25d366;"></i>
                     <div>
                         <strong style="display: block; font-size: 13px; text-transform: uppercase; color: var(--text-muted);">WhatsApp Support</strong>
-                        <span style="font-size: 14px; font-weight: 700; color: #fff;">+1 (347) 528-9691</span>
+                        <span style="font-size: 14px; font-weight: 700; color: #fff;">+1 (929) 727 5156</span>
                     </div>
                 </a>
 
-                <a href="https://t.me/buyusdteasy" target="_blank" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; background: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.25); border-radius: 10px; padding: 14px 18px; transition: all 0.3s;" onmouseover="this.style.background='rgba(52, 152, 219, 0.2)'" onmouseout="this.style.background='rgba(52, 152, 219, 0.1)'">
+                <a href="https://t.me/wiresforusdt" target="_blank" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; background: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.25); border-radius: 10px; padding: 14px 18px; transition: all 0.3s;" onmouseover="this.style.background='rgba(52, 152, 219, 0.2)'" onmouseout="this.style.background='rgba(52, 152, 219, 0.1)'">
                     <i class="fa-brands fa-telegram" style="font-size: 24px; color: #3498db;"></i>
                     <div>
                         <strong style="display: block; font-size: 13px; text-transform: uppercase; color: var(--text-muted);">Telegram Channel</strong>
-                        <span style="font-size: 14px; font-weight: 700; color: #fff;">@buyusdteasy</span>
+                        <span style="font-size: 14px; font-weight: 700; color: #fff;">@wiresforusdt</span>
                     </div>
                 </a>
             </div>

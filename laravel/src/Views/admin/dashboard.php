@@ -109,7 +109,10 @@ $styles = "
             <span style="color: var(--accent-neon); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 4px;">SECURED ADMINISTRATIVE ROOT AUTHORITY</span>
             <h1 style="font-size: 28px; font-weight: 800; margin: 0; color: #fff;">Approval Authority Board</h1>
         </div>
-        <div style="display: flex; gap: 10px; align-items: center;">
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <a href="<?= url('/admin/expo-inquiries') ?>" class="admin-btn admin-btn-approve" style="padding: 8px 16px; font-size: 12px; border-radius: 30px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
+                <i class="fa-solid fa-calendar-check" style="font-size: 10px;"></i> Enquiry for Expo
+            </a>
             <a href="<?= url('/admin/dropdowns') ?>" class="admin-btn admin-btn-approve" style="padding: 8px 16px; font-size: 12px; border-radius: 30px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
                 <i class="fa-solid fa-gears" style="font-size: 10px;"></i> Manage Dropdowns
             </a>
