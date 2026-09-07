@@ -2,7 +2,7 @@
 // Configurable Team Member Image URLs:
 // You can use local paths (e.g. url('/images/yanic.jpg')) 
 // or paste full web URLs (e.g. 'https://yourdomain.com/path/to/image.jpg')
-$yanicPhotoUrl = url('/images/yanic.jpg');
+$yanicPhotoUrl = url('/images/Yanick.jpeg');
 $bdLeadPhotoUrl = url('/images/Nabin_Jiaswal.jpeg');
 ?>
 
