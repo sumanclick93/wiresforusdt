@@ -514,6 +514,7 @@
                                 <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">ENTITY</strong> Delaware limited liability company &bull; EIN 33-1626372</div>
                                 <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">REGISTERED OFFICE</strong> 8 The Green, Suite A, Dover, DE 19901, USA</div>
                                 <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">GOVERNING LAW</strong> State of Delaware, USA &bull; Bank Secrecy Act</div>
+                                <div>Powered by <a href="https://butterex.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-neon); text-decoration: none; font-weight: 600;">Butterex.com</a></div>
                             </div>
                         </div>
                         <p class="copyright">&copy; 2026 Wires4 USDT. All Rights Reserved.</p>

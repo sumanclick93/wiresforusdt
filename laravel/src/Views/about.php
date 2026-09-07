@@ -73,7 +73,7 @@ $bdLeadPhotoUrl = url('/images/Nabin_Jiaswal.jpeg');
                             <i class="fa-solid fa-user-tie" style="font-size: 50px; color: var(--accent-neon);"></i>
                         </div>
                     </div>
-                    <h4 style="font-size: 18px; font-weight: 800; color: #fff; margin: 0 0 4px 0;">Yanic</h4>
+                    <h4 style="font-size: 18px; font-weight: 800; color: #fff; margin: 0 0 4px 0;">YANNICK ALEGE</h4>
                     <span
                         style="font-size: 12px; font-weight: 700; color: var(--accent-neon); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 12px;">Founder
                         &amp; CEO</span>
@@ -98,8 +98,7 @@ $bdLeadPhotoUrl = url('/images/Nabin_Jiaswal.jpeg');
                             <i class="fa-solid fa-user-gear" style="font-size: 50px; color: var(--accent-neon);"></i>
                         </div>
                     </div>
-                    <h4 style="font-size: 18px; font-weight: 800; color: #fff; margin: 0 0 4px 0;">Business Development
-                        Lead</h4>
+                    <h4 style="font-size: 18px; font-weight: 800; color: #fff; margin: 0 0 4px 0;">Nabin J.</h4>
                     <span
                         style="font-size: 12px; font-weight: 700; color: var(--accent-neon); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 12px;">Head
                         of Global Partnerships</span>
