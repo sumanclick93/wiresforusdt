@@ -226,7 +226,7 @@ class AdminController extends Controller
                 <p>Dear {$user->name},</p>
                 <p>Your USDT purchase request for reference number <strong>{$request->deposit_reference_number}</strong> (amounting to " . number_format($request->usdt_amount, 2) . " USDT) was unfortunately rejected by our compliance department.</p>
                 <p>Please ensure that all wire transfer details exactly match your registered bank specifications, and that a clear, valid proof of deposit image/PDF is provided.</p>
-                <p>If you believe this was an error, please contact Wires4 institutional support at support@wiresforusdt.com or via Telegram (@wiresforusdt) / WhatsApp (+1 (929) 727 5156).</p>
+                <p>If you believe this was an error, please contact Wires4 institutional support at admin@wiresforusdt.com or via Telegram (@wiresforusdt) / WhatsApp (+1 (929) 727 5156).</p>
             ";
             $this->simulateEmail($user->email, $subject, $body);
         }
@@ -657,7 +657,7 @@ class AdminController extends Controller
                 <p>Dear {$user->name},</p>
                 <p>Your USDT sell request for " . number_format($request->usdt_amount, 2) . " USDT has been rejected by our compliance department.</p>
                 <p>No funds were deducted from your secure settlement wallet. Please verify that your registered receiving bank coordinates are correct and active.</p>
-                <p>If you believe this was in error, please contact your account officer or support@wiresforusdt.com.</p>
+                <p>If you believe this was in error, please contact your account officer or admin@wiresforusdt.com.</p>
             ";
             $this->simulateEmail($user->email, $subject, $body);
         }

@@ -16,7 +16,7 @@ class MailHelper
         $username = Config::get('MAIL_USERNAME', '');
         $password = Config::get('MAIL_PASSWORD', '');
         $encryption = strtolower(Config::get('MAIL_ENCRYPTION', ''));
-        $fromEmail = Config::get('MAIL_FROM_ADDRESS', 'support@wiresforusdt.com');
+        $fromEmail = Config::get('MAIL_FROM_ADDRESS', 'admin@wiresforusdt.com');
         $fromName = Config::get('MAIL_FROM_NAME', 'Wires4');
 
         // Determine protocol

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Core\Config;
 use App\Core\Database;
 use App\Core\Session;
 use App\Helpers\TOTPHelper;
@@ -162,7 +163,7 @@ class AuthController extends Controller
             ]);
 
             // Dispatch notification
-            $support = Config::get('MAIL_FROM_ADDRESS', 'support@wiresforusdt.com');
+            $support = \App\Core\Config::get('MAIL_FROM_ADDRESS', 'admin@wiresforusdt.com');
             $subject = "New Dubai Expo 2026 VIP Inquiry — {$name} ({$company})";
             $body = "
                 <div style='font-family: Arial, sans-serif; color: #222; line-height: 1.6;'>
@@ -278,7 +279,7 @@ class AuthController extends Controller
             ? 'Retail Exchange vs. OTC Desk page'
             : 'OTC USDT page';
 
-        $support = \App\Core\Config::get('MAIL_FROM_ADDRESS', 'support@wiresforusdt.com');
+        $support = \App\Core\Config::get('MAIL_FROM_ADDRESS', 'admin@wiresforusdt.com');
         $subject = "OTC USDT Inquiry — {$amount} ({$customerType})";
         $body = "
             <div style='font-family: Arial, sans-serif; color: #222; line-height: 1.6;'>

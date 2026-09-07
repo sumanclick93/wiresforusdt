@@ -261,7 +261,7 @@
         <span style="font-size: 13px; color: var(--text-muted);">
             Need customized limit increments? Reach out to support.
         </span>
-        <a href="mailto:limits@wiresforusdt.com" class="btn btn-ghost" style="padding: 10px 20px; font-size: 12px; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px;">
+        <a href="mailto:admin@wiresforusdt.com" class="btn btn-ghost" style="padding: 10px 20px; font-size: 12px; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-headset"></i> Request Limit Increments
         </a>
     </div>

@@ -445,7 +445,7 @@
                     <div class="footer-contact-side">
                         <h4>Contact Us</h4>
                         <p><i class="fa-solid fa-phone" style="margin-right: 8px; color: var(--accent-neon);"></i> +1 (929) 727 5156</p>
-                        <p><i class="fa-solid fa-envelope" style="margin-right: 8px; color: var(--accent-neon);"></i> Wires4usdt@gmail.com</p>
+                        <p><i class="fa-solid fa-envelope" style="margin-right: 8px; color: var(--accent-neon);"></i> admin@wiresforusdt.com</p>
                         <div class="social-links">
                             <a class="social-icon" href="https://t.me/wiresforusdt" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                             <a class="social-icon" href="https://wa.me/19297275156" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>

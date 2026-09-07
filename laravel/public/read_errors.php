@@ -86,7 +86,7 @@ if (!empty($_GET['test_email'])) {
     $username = \App\Core\Config::get('MAIL_USERNAME', '');
     $password = \App\Core\Config::get('MAIL_PASSWORD', '');
     $encryption = strtolower(\App\Core\Config::get('MAIL_ENCRYPTION', ''));
-    $fromEmail = \App\Core\Config::get('MAIL_FROM_ADDRESS', 'support@wiresforusdt.com');
+    $fromEmail = \App\Core\Config::get('MAIL_FROM_ADDRESS', 'admin@wiresforusdt.com');
     $fromName = \App\Core\Config::get('MAIL_FROM_NAME', 'Wires4');
 
     echo "SMTP Configuration:\n";

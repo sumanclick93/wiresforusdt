@@ -499,19 +499,29 @@
                             <img src="<?= url('/images/logo.png') ?>" alt="Wires4" />
                         </a>
                         <p>Designed to meet the complex trading needs of institutions. Wires4 Digital provides highly regulated, MPC-secured digital custody and high-limit liquidity settlement infrastructures.</p>
-                        <div style="margin-top: 20px; font-size: 12px; line-height: 1.6; color: var(--text-muted); text-align: left; border-left: 2px solid var(--accent-neon); padding-left: 14px; margin-bottom: 20px;">
-                            <strong>Powered by BURTEREX S.R.O.</strong><br>
-                            MSB Registration Number: 31000274751182<br>
-                            Trade License Number: 19560851 (Czech Republic Registration)<br>
-                            Registered Office Address: Cimburkova 916/8, 130 00 Praha - Žižkov, Czech Republic<br>
-                            Register Office: Veřejný rejstřík a Sbírka listin - Ministry of Justice
+                        <div style="margin-top: 20px; margin-bottom: 20px; padding: 18px; background: rgba(18, 18, 22, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; font-size: 12px; line-height: 1.6; color: #d4d4d8; text-align: left;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px;">
+                                <div>
+                                    <span style="font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-neon); display: block; margin-bottom: 2px;">UNITED STATES &bull; FINCEN</span>
+                                    <strong style="font-size: 16px; color: #ffffff; display: block; line-height: 1.2;">Money Services Business</strong>
+                                    <span style="font-size: 13px; color: #a1a1aa;">Dynamic Capital Tech LLC</span>
+                                </div>
+                                <span style="border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #e4e4e7;">US</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 12px;">
+                                <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">REGISTRATION NO.</strong> <span style="font-family: monospace; font-size: 13px; font-weight: 700; color: #fff;">31000308345717</span></div>
+                                <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">ISSUER</strong> Financial Crimes Enforcement Network (FinCEN)</div>
+                                <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">ENTITY</strong> Delaware limited liability company &bull; EIN 33-1626372</div>
+                                <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">REGISTERED OFFICE</strong> 8 The Green, Suite A, Dover, DE 19901, USA</div>
+                                <div><strong style="color: #a1a1aa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block;">GOVERNING LAW</strong> State of Delaware, USA &bull; Bank Secrecy Act</div>
+                            </div>
                         </div>
                         <p class="copyright">&copy; 2026 Wires4 USDT. All Rights Reserved.</p>
                     </div>
                     <div class="footer-contact-side">
                         <h4>Contact Us</h4>
                         <p><i class="fa-solid fa-phone" style="margin-right: 8px; color: var(--accent-neon);"></i> +1 (929) 727 5156</p>
-                        <p><i class="fa-solid fa-envelope" style="margin-right: 8px; color: var(--accent-neon);"></i> Wires4usdt@gmail.com</p>
+                        <p><i class="fa-solid fa-envelope" style="margin-right: 8px; color: var(--accent-neon);"></i> admin@wiresforusdt.com</p>
                         <div class="social-links">
                             <a class="social-icon" href="https://t.me/wiresforusdt" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                             <a class="social-icon" href="https://wa.me/19297275156" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
