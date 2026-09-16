@@ -120,7 +120,7 @@ class AuthController extends Controller
      */
     public function dubaiExpo(): void
     {
-        $this->render('dubai_expo_2026', [], 'Dubai Expo 2026 — Wires4 Executive Lounge & OTC Desk');
+        $this->redirect('/');
     }
 
     /**

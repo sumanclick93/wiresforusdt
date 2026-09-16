@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="<?= url('/css/landing.css?v=1.3') ?>" />
     </head>
     <body>
+        <?php require __DIR__ . '/partials/top_banner.php'; ?>
         <header class="site-header">
             <div class="container header-inner">
                 <a class="brand" href="<?= url('/') ?>">
@@ -28,7 +29,6 @@
                     <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
                     <a href="<?= url('/retail-exchange-vs-otc-desk') ?>" class="active">Retail vs OTC</a>
                     <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
-                    <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                     <a href="<?= url('/contact') ?>">Contact Us</a>
                 </nav>
                 <div class="header-cta" style="display: flex; align-items: center; gap: 18px;">
@@ -81,7 +81,6 @@
                 <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
                 <a href="<?= url('/retail-exchange-vs-otc-desk') ?>" class="active">Retail vs OTC</a>
                 <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
-                <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                 <a href="<?= url('/contact') ?>">Contact Us</a>
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
                     <?php if (\App\Core\Session::check()): ?>
@@ -460,7 +459,6 @@
                         <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
                         <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
                         <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
-                        <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                         <a href="<?= url('/contact') ?>">Contact Us</a>
                     </div>
                 </div>

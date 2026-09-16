@@ -277,6 +277,7 @@
         <?php if (isset($styles)) echo $styles; ?>
     </head>
     <body>
+        <?php require __DIR__ . '/../partials/top_banner.php'; ?>
         <!-- Header -->
         <header class="site-header">
             <div class="container header-inner">
@@ -290,7 +291,6 @@
                     <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
                     <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
                     <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
-                    <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                     <?php /* <a href="<?= url('/proof_of_funds') ?>">Tests for sale</a> */ ?>
                     <a href="<?= url('/contact') ?>">Contact Us</a>
                 </nav>
@@ -314,9 +314,6 @@
                                 <?php if ($currUser->role === 'admin'): ?>
                                     <a href="<?= url('/admin/dashboard') ?>" class="dropdown-item">
                                         <i class="fa-solid fa-chart-line"></i> Admin Panel
-                                    </a>
-                                    <a href="<?= url('/admin/expo-inquiries') ?>" class="dropdown-item">
-                                        <i class="fa-solid fa-calendar-check"></i> Enquiry for Expo
                                     </a>
                                 <?php else: ?>
                                     <a href="<?= url('/dashboard') ?>" class="dropdown-item">
@@ -363,7 +360,6 @@
                 <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
                 <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
                 <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
-                <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                 <a href="<?= url('/contact') ?>">Contact Us</a>
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
                     <?php if (\App\Core\Session::check()): ?>
@@ -398,7 +394,6 @@
                     <a href="<?= url('/otc-usdt') ?>">OTC USDT</a>
                     <a href="<?= url('/retail-exchange-vs-otc-desk') ?>">Retail vs OTC</a>
                     <a href="<?= url('/otc-for-casino') ?>">OTC for Casino</a>
-                    <a href="<?= url('/dubai-expo-2026') ?>">Dubai Expo2026</a>
                     <a href="<?= url('/contact') ?>">Contact Us</a>
                 </div>
                 <div style="font-size: 12px; line-height: 1.8; margin-bottom: 24px; color: rgba(255, 255, 255, 0.4); text-align: center; max-width: 800px; margin: 0 auto 24px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">
